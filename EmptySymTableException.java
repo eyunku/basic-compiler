@@ -1,0 +1,1 @@
+public EmptySymTableException extends Exception { }
