@@ -5,7 +5,7 @@ public class Sym {
      * Constructor for the Sym (symbol) class. Initializes Sym to have
      * the given type.
      * 
-     * @param type  the type of the identifier, represented by a String
+     * @param type  the type of the identifier, represented by a String.
      */
     public Sym(String type) {
         this.type = type;

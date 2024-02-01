@@ -76,6 +76,4 @@ class SymTable implements ISymTable {
     public void print() {
         throw new UnsupportedOperationException("Unimplemented method 'print'");
     }
-
-    
 }
