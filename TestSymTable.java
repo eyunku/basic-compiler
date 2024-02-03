@@ -170,7 +170,7 @@ class TestSymTable {
         // check that EmptySymTableException correctly thrown
         try {
             checkEmptySymTableException.removeScope();
-            checkEmptySymTableException.lookupLocal("foo");
+            checkEmptySymTableException.lookupGlobal("foo");
             // should not reach this point, should throw exception
             System.err.println("Expected EmptySymTableException.");
         } catch (EmptySymTableException e) {
@@ -183,17 +183,17 @@ class TestSymTable {
         // check that correct value is returned
         try {
             // ensure missing key returns null
-            if (key.lookupLocal("foo") != null)
+            if (key.lookupGlobal("foo") != null)
                 System.err.println("Key 'foo' should not exist.");
             // ensure existing key returns correct object
             Sym foo = new Sym("foo");
             key.addDecl("foo", foo);
-            if (key.lookupLocal("foo") != foo) {
+            if (key.lookupGlobal("foo") != foo) {
                 System.err.println("Incorrect Sym object returned.");
             }
             // ensure global scope
             key.addScope();
-            if (key.lookupLocal("foo") != foo) {
+            if (key.lookupGlobal("foo") != foo) {
                 System.err.println("Incorrect Sym object returned. May be " +
                                         "scope error.");
             }
