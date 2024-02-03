@@ -1,12 +1,16 @@
+import java.util.LinkedList;
+import java.util.HashMap;
+
 class SymTable implements ISymTable {
-    
+    LinkedList<HashMap<String, Sym>> list;
 
     /**
-     * Constructor for SymTable. Initializes the SymTable's List
+     * Constructor for SymTable. Initializes the SymTable's list
      * to contain a single, empty HashMap.
      */
     public SymTable() {
-
+        list = new LinkedList<HashMap<String, Sym>>();
+        list.push(new HashMap<String, Sym>());
     }
 
     /**
@@ -23,14 +27,25 @@ class SymTable implements ISymTable {
      */
     public void addDecl(String name, Sym sym) throws DuplicateSymNameException, 
         EmptySymTableException {
-        throw new UnsupportedOperationException("Unimplemented method 'addDecl'");
+        if (name == null || sym == null) throw new IllegalArgumentException();
+        if (list.isEmpty()) throw new EmptySymTableException();
+        
+        // add new element if the new key is unique
+        HashMap<String, Sym> head = list.pop();
+        if (head.containsKey(name)) {
+            list.push(head);
+            throw new DuplicateSymNameException();
+        } else {
+            head.put(name, sym);
+            list.push(head);
+        }
     }
 
     /**
      * Add a new, empty HashMap to the front of the List.
      */
     public void addScope() {
-        throw new UnsupportedOperationException("Unimplemented method 'addScope'");
+        list.push(new HashMap<String, Sym>());
     }
 
     /**
@@ -44,7 +59,9 @@ class SymTable implements ISymTable {
      *                                      key has no associated value.
      */
     public Sym lookupLocal(String name) throws EmptySymTableException {
-        throw new UnsupportedOperationException("Unimplemented method 'lookupLocal'");
+        if (list.isEmpty()) throw new EmptySymTableException();
+        HashMap<String, Sym> head = list.element();
+        return head.get(name);
     }
 
     /**
@@ -59,7 +76,13 @@ class SymTable implements ISymTable {
      *                                  associated value.
      */
     public Sym lookupGlobal(String name) throws EmptySymTableException {
-        throw new UnsupportedOperationException("Unimplemented method 'lookupGlobal'");
+        if (list.isEmpty()) throw new EmptySymTableException();
+        for (HashMap<String, Sym> map : list) {
+            Sym ret = map.get(name);
+            if (ret != null) return ret;
+        }
+        // failed to find after iterating through whole list
+        return null;
     }
 
     /**
@@ -67,13 +90,25 @@ class SymTable implements ISymTable {
      * otherwise, remove the HashMap from the front of the list.
      */
     public void removeScope() throws EmptySymTableException {
-        throw new UnsupportedOperationException("Unimplemented method 'removeScope'");
+        if (list.isEmpty()) throw new EmptySymTableException();
+        list.pop();
     }
 
     /**
      * Prints the contents of the SymTable.
      */
     public void print() {
-        throw new UnsupportedOperationException("Unimplemented method 'print'");
+        System.out.print("\n++++ SYMBOL TABLE\n");
+        for (HashMap<String, Sym> map : list)
+            System.out.println(map.toString());
+        System.out.print("\n++++ END TABLE\n");
+    }
+
+    public LinkedList<HashMap<String, Sym>> getList() { return list; }
+
+    public static void main(String[] args) {
+        SymTable table = new SymTable();
+        System.out.println(table.list);
+        System.out.println(table.list.isEmpty());
     }
 }

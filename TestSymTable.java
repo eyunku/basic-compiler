@@ -1,5 +1,6 @@
 class TestSymTable {
     private static void testConstructor() {
+        System.err.print("Testing constructor...\n");
         try {
             SymTable symTable = new SymTable();
             try {
@@ -13,13 +14,15 @@ class TestSymTable {
             System.err.println("Unexpected exception " + 
                                 e.getClass().getCanonicalName() + ".");
         }
+        System.err.println("--- end of test ---\n");
     }
 
     private static void testAddDecl() {
+        System.err.print("Testing addDecl()...\n");
         SymTable checkIllegalArgumentException = new SymTable();
         SymTable checkDuplicateSymNameException = new SymTable();
         SymTable checkEmptySymTableException = new SymTable();
-        SymTable validAddDeclr = new SymTable();
+        SymTable validAddDecl = new SymTable();
         
         // Test IllegalArgumentException
         // check with sym being null
@@ -86,14 +89,16 @@ class TestSymTable {
 
         // Test that valid addition of declaration doesn't result in exception
         try {
-            validAddDeclr.addDecl("valid", new Sym("valid"));
+            validAddDecl.addDecl("valid", new Sym("valid"));
         } catch (Exception e) {
             System.err.println("Unexpected exception " +
                                 e.getClass().getCanonicalName() + ".");
         }
+        System.err.println("--- end of test ---\n");
     }
 
     private static void testAddScope() {
+        System.err.print("Testing addScope()...\n");
         SymTable addScope = new SymTable();
         // ensure that addScope succeeds without errors
         try {
@@ -122,9 +127,11 @@ class TestSymTable {
             System.err.println("Unexpected exception " +
                                 e.getClass().getCanonicalName() + ".");
         }
+        System.err.println("--- end of test ---\n");
     }
     
     private static void testLookupLocal() {
+        System.err.print("Testing lookupLocal()...\n");
         SymTable checkEmptySymTableException = new SymTable();
         SymTable key = new SymTable();
 
@@ -161,9 +168,11 @@ class TestSymTable {
             System.err.println("Unexpected exception " +
                                 e.getClass().getCanonicalName() + ".");
         }
+        System.err.println("--- end of test ---\n");
     }
 
     private static void testLookupGlobal() {
+        System.err.print("Testing lookupGlobal()...\n");
         SymTable checkEmptySymTableException = new SymTable();
         SymTable key = new SymTable();
 
@@ -201,9 +210,11 @@ class TestSymTable {
             System.err.println("Unexpected exception " +
                                 e.getClass().getCanonicalName() + ".");
         }
+        System.err.println("--- end of test ---\n");
     }
 
     private static void testRemoveScope() {
+        System.err.print("Testing removeScope()...\n");
         SymTable table = new SymTable();
         // remove scope that is created upon object initialization
         try {
@@ -224,9 +235,11 @@ class TestSymTable {
             System.err.println("Unexpected exception " +
                                 e.getClass().getCanonicalName() + ".");
         }
+        System.err.println("--- end of test ---\n");
     }
 
     private static void testPrint() {
+        System.err.print("Testing print()...\n");
         SymTable print = new SymTable();
         try {
             print.print();
@@ -234,6 +247,7 @@ class TestSymTable {
             System.err.println("Unexpected exception " +
                                 e.getClass().getCanonicalName() + ".");
         }
+        System.err.println("--- end of test ---\n");
     }
 
     public static void main(String[] args) {
