@@ -1,4 +1,9 @@
 class TestSymTable {
+    /**
+     * Tests the SymTable constructor. Ensures that the object is created
+     * without errors, and that the constructor initializes a list with a single
+     * empty HashMap.
+     */
     private static void testConstructor() {
         System.err.print("Testing constructor...\n");
         try {
@@ -17,6 +22,11 @@ class TestSymTable {
         System.err.println("--- end of test ---\n");
     }
 
+    /**
+     * Tests the function addDecl(). Ensures that the correct exceptions are
+     * thrown when expected, and that no exceptions are thrown when there
+     * are no errors.
+     */
     private static void testAddDecl() {
         System.err.print("Testing addDecl()...\n");
         SymTable checkIllegalArgumentException = new SymTable();
@@ -97,6 +107,11 @@ class TestSymTable {
         System.err.println("--- end of test ---\n");
     }
 
+    /**
+     * Tests the function addScope(). Ensures that the correct exceptions are
+     * thrown when expected, and that no exceptions are thrown when there
+     * are no errors. Checks that a scope is added when the function is called.
+     */
     private static void testAddScope() {
         System.err.print("Testing addScope()...\n");
         SymTable addScope = new SymTable();
@@ -130,6 +145,12 @@ class TestSymTable {
         System.err.println("--- end of test ---\n");
     }
     
+    /**
+     * Tests the function lookupLocal(). Ensures that the correct exceptions are
+     * thrown when expected, and that no exceptions are thrown when there
+     * are no errors. Checks that keys only look within local scope, and that
+     * the correct Sym object is returned.
+     */
     private static void testLookupLocal() {
         System.err.print("Testing lookupLocal()...\n");
         SymTable checkEmptySymTableException = new SymTable();
@@ -171,6 +192,12 @@ class TestSymTable {
         System.err.println("--- end of test ---\n");
     }
 
+    /**
+     * Tests the function lookupGlobal(). Ensures that the correct exceptions 
+     * are thrown when expected, and that no exceptions are thrown when there
+     * are no errors. Checks that keys look within global scope, and that
+     * the correct Sym object is returned.
+     */
     private static void testLookupGlobal() {
         System.err.print("Testing lookupGlobal()...\n");
         SymTable checkEmptySymTableException = new SymTable();
@@ -213,6 +240,11 @@ class TestSymTable {
         System.err.println("--- end of test ---\n");
     }
 
+    /**
+     * Tests the function removeScope(). Ensures that the correct exceptions are
+     * thrown when expected, and that no exceptions are thrown when there are
+     * no errors. Checks that a scope is removed when the function is called.
+     */
     private static void testRemoveScope() {
         System.err.print("Testing removeScope()...\n");
         SymTable table = new SymTable();
@@ -238,6 +270,11 @@ class TestSymTable {
         System.err.println("--- end of test ---\n");
     }
 
+    /**
+     * Tests the function print(). Ensures that the correct exceptions are
+     * thrown when expected, and that no exceptions are thrown when there
+     * are no errors.
+     */
     private static void testPrint() {
         System.err.print("Testing print()...\n");
         SymTable print = new SymTable();
