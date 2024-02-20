@@ -11,12 +11,12 @@ import java_cup.runtime.*; // defines the Symbol class
 class TokenVal {
     // fields
     int lineNum;
-    int charNum;
+    int CharNum;
 	
     // constructor
-    TokenVal(int lineNum, int charNum) {
+    TokenVal(int lineNum, int CharNum) {
         this.lineNum = lineNum;
-        this.charNum = charNum;
+        this.CharNum = CharNum;
     }
 }
   
@@ -25,8 +25,8 @@ class IntLitTokenVal extends TokenVal {
     int intVal;
 	
     // constructor
-    IntLitTokenVal(int lineNum, int charNum, int intVal) {
-        super(lineNum, charNum);
+    IntLitTokenVal(int lineNum, int CharNum, int intVal) {
+        super(lineNum, CharNum);
         this.intVal = intVal;
     }
 }
@@ -36,8 +36,8 @@ class IdTokenVal extends TokenVal {
     String idVal;
 	
     // constructor
-    IdTokenVal(int lineNum, int charNum, String idVal) {
-        super(lineNum, charNum);
+    IdTokenVal(int lineNum, int CharNum, String idVal) {
+        super(lineNum, CharNum);
         this.idVal = idVal;
     }
 }
@@ -47,8 +47,8 @@ class StrLitTokenVal extends TokenVal {
     String strVal;
 	
     // constructor
-    StrLitTokenVal(int lineNum, int charNum, String strVal) {
-        super(lineNum, charNum);
+    StrLitTokenVal(int lineNum, int CharNum, String strVal) {
+        super(lineNum, CharNum);
         this.strVal = strVal;
     }
 }
@@ -79,62 +79,62 @@ return new Symbol(sym.EOF);
 %%
 
 "void"    { Symbol S = new Symbol(sym.VOID, new TokenVal(yyline+1, CharNum.num));
-            CharNum.num += yytext().length;
+            CharNum.num += yytext().length();
             return S;
           }
 
-"logical" { Symbonl S = new Symbol(sym.LOGICAL, new TokenVal(yyline+1, CharNum.num));
-            CharNum.num += yytext().length;
+"logical" { Symbol S = new Symbol(sym.LOGICAL, new TokenVal(yyline+1, CharNum.num));
+            CharNum.num += yytext().length();
             return S;
           }
 
 "integer" { Symbol S = new Symbol(sym.INTEGER, new TokenVal(yyline+1, CharNum.num));
-            CharNum.num += yytext().length;
+            CharNum.num += yytext().length();
             return S;
           }
 
-"True"    { Symbol S = new Symbol(sym.TRUE, new TokenVal(yyline+1, charNum.num));
-            CharNum.num += yytext().length;
+"True"    { Symbol S = new Symbol(sym.TRUE, new TokenVal(yyline+1, CharNum.num));
+            CharNum.num += yytext().length();
             return S;
           }
 
-"False"   { Symbol S = new Symbol(sym.FALSE, new TokenVal(yyline+1, charNum.num));
-            CharNum.num += yytext().length;
+"False"   { Symbol S = new Symbol(sym.FALSE, new TokenVal(yyline+1, CharNum.num));
+            CharNum.num += yytext().length();
             return S;
           }
 
-"tuple"   { Symbol S = new Symbol(sym.TUPLE, new TokenVal(yyline+1, charNum.num));
-            CharNum.num += yytext().length;
+"tuple"   { Symbol S = new Symbol(sym.TUPLE, new TokenVal(yyline+1, CharNum.num));
+            CharNum.num += yytext().length();
             return S;
           }
 
-"read"    { Symbol S = new Symbol(sym.READ, new TokenVal(yyline+1, charNum.num));
-            CharNum.num += yytext().length;
+"read"    { Symbol S = new Symbol(sym.READ, new TokenVal(yyline+1, CharNum.num));
+            CharNum.num += yytext().length();
             return S;
           }
 
-"write"   { Symbol S = new Symbol(sym.WRITE, new TokenVal(yyline+1, charNum.num));
-            CharNum.num += yytext().length;
+"write"   { Symbol S = new Symbol(sym.WRITE, new TokenVal(yyline+1, CharNum.num));
+            CharNum.num += yytext().length();
             return S;
           }
 
-"if"      { Symbol S = new Symbol(sym.IF, new TokenVal(yyline+1, charNum.num));
-            CharNum.num += yytext().length;
+"if"      { Symbol S = new Symbol(sym.IF, new TokenVal(yyline+1, CharNum.num));
+            CharNum.num += yytext().length();
             return S;
           }
 
-"else"    { Symbol S = new Symbol(sym.ELSE, new TokenVal(yyline+1, charNum.num));
-            CharNum.num += yytext().length;
+"else"    { Symbol S = new Symbol(sym.ELSE, new TokenVal(yyline+1, CharNum.num));
+            CharNum.num += yytext().length();
             return S;
           }
 
-"while"   { Symbol S = new Symbol(sym.WHILE, new TokenVal(yyline+1, charNum.num));
-            CharNum.num += yytext().length;
+"while"   { Symbol S = new Symbol(sym.WHILE, new TokenVal(yyline+1, CharNum.num));
+            CharNum.num += yytext().length();
             return S;
           }
 
-"return"  { Symbol S = new Symbol(sym.RETURN, new TokenVal(yyline+1, charNum.num));
-            CharNum.num += yytext().length;
+"return"  { Symbol S = new Symbol(sym.RETURN, new TokenVal(yyline+1, CharNum.num));
+            CharNum.num += yytext().length();
             return S;
           }
 
@@ -183,7 +183,7 @@ return new Symbol(sym.EOF);
             return S;
           }
 
-"["       { Symbol S = new Symbol(sym.LSQPBRACKET, new TokenVal(yyline+1, CharNum.num));
+"["       { Symbol S = new Symbol(sym.LSQBRACKET, new TokenVal(yyline+1, CharNum.num));
             CharNum.num++;
             return S;
           }
