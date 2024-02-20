@@ -63,7 +63,8 @@ class CharNum {
 DIGIT=        [0-9]
 WHITESPACE=   [\040\t]
 COMMENT=      ^(!!|\$)
-QUOTES=       \"([^\"])*\"
+ESCAPE=       (\\n)|(\\s)|(\\t)|(\\\")|(\\')|(\\\\)
+STRING=        \"([^\\\012\"]|ESCAPE)*\"
 
 %implements java_cup.runtime.Scanner
 %function next_token
@@ -151,6 +152,11 @@ return new Symbol(sym.EOF);
 {COMMENT} { CharNum.num = 1; }
 
 {WHITESPACE}+  { CharNum.num += yytext().length(); }
+
+{STRING}  { Symbol S = new Symbol(sym.STRLITERAL, new TokenVal(yyline+1, CharNum.num));
+            CharNum.num++;
+            return S;
+          }
 
 "="       { Symbol S = new Symbol(sym.ASSIGN, new TokenVal(yyline+1, CharNum.num));
             CharNum.num++;
